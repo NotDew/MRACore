@@ -1,0 +1,12 @@
+name: MRACore
+version: '${project.version}'
+author: NotDew
+main: me.notdew.com.mracore.MRACore
+api-version: 1.18
+
+commands:
+  laps:
+  leaderboard:
+    aliases: l
+  rank:
+    aliases: grant
