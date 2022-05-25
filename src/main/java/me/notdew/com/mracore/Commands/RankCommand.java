@@ -17,12 +17,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class RankCommand implements CommandExecutor, Listener {
+    
+    public static HashMap<Player, Player> rank = new HashMap<>();
 
     public static Inventory inv;
     public static Inventory i;
-    public static String name;
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) return false;
@@ -32,14 +34,14 @@ public class RankCommand implements CommandExecutor, Listener {
             sender.sendMessage(ChatColor.RED + "Specify a player.");
             return false;
         }
-        name = args[0];
+        rank.put(p, Bukkit.getPlayer(args[0]));
 
 
         inv = Bukkit.createInventory(null, 27, ChatColor.GREEN + "" + ChatColor.BOLD + "MRA Ranks");
 
         // Put the items into the inventory
-        inv.setItem(12, createGuiItem(Material.OAK_BOAT, "§a§lTeam Roles", "§aGive " + ChatColor.RED + name + " §aA Team Role!!", ""));
-        inv.setItem(14, createGuiItem(Material.WOODEN_AXE, "§e§lBuilder", "§eGive " + ChatColor.RED + name + " §eThe Builder Rank!", ""));
+        inv.setItem(12, createGuiItem(Material.OAK_BOAT, "§a§lTeam Roles", "§aGive " + ChatColor.RED + rank.get(p).getName() + " §aA Team Role!!", ""));
+        inv.setItem(14, createGuiItem(Material.WOODEN_AXE, "§e§lBuilder", "§eGive " + ChatColor.RED + rank.get(p).getName() + " §eThe Builder Rank!", ""));
         for(int slot = 0; slot < inv.getSize(); slot++) {
             if(inv.getItem(slot) == null) {
                 inv.setItem(slot, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
@@ -88,68 +90,68 @@ public class RankCommand implements CommandExecutor, Listener {
 
         if (e.getInventory().equals(i)) {
             if (e.getRawSlot() == 3) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired AlfaRomeo");
-                confirmRank("lp user " + RankCommand.name + " parent add alfaromeo");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired AlfaRomeo");
+                confirmRank("lp user " + rank.get(p).getName() + " parent add alfaromeo");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 4) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired AlphaTauri");
-                confirmRank( "lp user " + RankCommand.name + " parent add alphatauri");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired AlphaTauri");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add alphatauri");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 5) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Alpine");
-                confirmRank( "lp user " + RankCommand.name + " parent add alpine");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Alpine");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add alpine");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 11) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired BMW");
-                confirmRank( "lp user " + RankCommand.name + " parent add bmw");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired BMW");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add bmw");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 12) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Ferrari");
-                confirmRank( "lp user " + RankCommand.name + " parent add ferrari");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Ferrari");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add ferrari");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 13) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Haas");
-                confirmRank( "lp user " + RankCommand.name + " parent add haas");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Haas");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add haas");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 14) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Lamborghini");
-                confirmRank( "lp user " + RankCommand.name + " parent add lamborghini");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Lamborghini");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add lamborghini");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 15) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired McLaren");
-                confirmRank( "lp user " + RankCommand.name + " parent add mclaren");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired McLaren");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add mclaren");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 21) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Mercedes");
-                confirmRank( "lp user " + RankCommand.name + " parent add mercedes");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Mercedes");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add mercedes");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 22) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired RedBull");
-                confirmRank( "lp user " + RankCommand.name + " parent add redbull");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired RedBull");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add redbull");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 23) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Williams");
-                confirmRank( "lp user " + RankCommand.name + " parent add williams");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Williams");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add williams");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
@@ -159,17 +161,17 @@ public class RankCommand implements CommandExecutor, Listener {
 
             if (e.getRawSlot() == 12) {
                 i = Bukkit.createInventory(null, 27, ChatColor.GREEN + "" + ChatColor.BOLD + "MRA Team Ranks");
-                i.setItem(3, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlfaRomeo ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(4, createGuiItem(Material.BIRCH_BOAT, "§a§lAlphaTauri ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(5, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlpine ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(11, createGuiItem(Material.OAK_BOAT, "§a§lBMW ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(12, createGuiItem(Material.DARK_OAK_BOAT, "§a§lFerrari ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(13, createGuiItem(Material.JUNGLE_BOAT, "§a§lHaas ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(14, createGuiItem(Material.DARK_OAK_BOAT, "§a§lLamborghini ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(15, createGuiItem(Material.OAK_BOAT, "§a§lMcLaren ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(21, createGuiItem(Material.DARK_OAK_BOAT, "§a§lMercedes ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(22, createGuiItem(Material.BIRCH_BOAT, "§a§lRedBull ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
-                i.setItem(23, createGuiItem(Material.DARK_OAK_BOAT, "§a§lWilliams ", "§aGive " + ChatColor.RED + name + " §aTeam Role!!", ""));
+                i.setItem(3, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlfaRomeo ", "§aGive " + ChatColor.RED + rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(4, createGuiItem(Material.BIRCH_BOAT, "§a§lAlphaTauri ", "§aGive " + ChatColor.RED + rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(5, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlpine ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(11, createGuiItem(Material.OAK_BOAT, "§a§lBMW ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(12, createGuiItem(Material.DARK_OAK_BOAT, "§a§lFerrari ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(13, createGuiItem(Material.JUNGLE_BOAT, "§a§lHaas ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(14, createGuiItem(Material.DARK_OAK_BOAT, "§a§lLamborghini ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(15, createGuiItem(Material.OAK_BOAT, "§a§lMcLaren ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(21, createGuiItem(Material.DARK_OAK_BOAT, "§a§lMercedes ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(22, createGuiItem(Material.BIRCH_BOAT, "§a§lRedBull ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(23, createGuiItem(Material.DARK_OAK_BOAT, "§a§lWilliams ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
 
                 // 3,4,5,11,12,13,14,15,21,22,23
 
@@ -182,9 +184,9 @@ public class RankCommand implements CommandExecutor, Listener {
 
             }
             if (e.getRawSlot() == 14) {
-                p.sendMessage(ChatColor.GREEN + RankCommand.name + " Has Acquired Builder");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Builder");
 
-                confirmRank( "lp user " + RankCommand.name + " parent add builder");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add builder");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
