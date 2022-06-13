@@ -1,5 +1,7 @@
 package me.notdew.com.mracore.Listeners;
 
+import me.notdew.com.mracore.MRACore;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -39,6 +41,15 @@ public class LapTime {
         String hms = String.format("%02dm:%02ds.%03dms", TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1),
                 millis % 1000);
+        if (MRACore.announce) {
+            Bukkit.broadcastMessage(ChatColor.GREEN + p.getName() + " > With a Time of: " + hms);
+        } else if (MRACore.announcestaff) {
+            for (Player pl : Bukkit.getOnlinePlayers()) {
+                if (pl.hasPermission("race.time")) {
+                    pl.sendMessage(ChatColor.GREEN + p.getName() + " > With a Time of: " + hms);
+                }
+            }
+        }
         p.sendMessage(ChatColor.GREEN + "With a time of: " + hms);
         ArrayList<Long> list = timings.get(p);
         list.add(millis);

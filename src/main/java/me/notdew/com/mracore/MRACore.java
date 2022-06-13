@@ -1,10 +1,9 @@
 package me.notdew.com.mracore;
 
-import me.notdew.com.mracore.Commands.ClearLaps;
-import me.notdew.com.mracore.Commands.LeaderBoard;
-import me.notdew.com.mracore.Commands.RankCommand;
+import me.notdew.com.mracore.Commands.*;
 import me.notdew.com.mracore.Listeners.LapListener;
 import me.notdew.com.mracore.Listeners.PitListener;
+import me.notdew.com.mracore.Objects.RaceObject;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -29,13 +28,22 @@ public final class MRACore extends JavaPlugin implements Listener {
     public static Objective getSb() {return obj;}
     public static ArrayList<Player> NoScoreboard = new ArrayList<Player>();
     public static HashMap<UUID, Double> laps = new HashMap<UUID, Double>();
+    public static HashMap<UUID, Double> flaps = new HashMap<UUID, Double>();
+
+    public static RaceObject race;
+
     public static HashMap<UUID, Boolean> pit = new HashMap<UUID, Boolean>();
+    public static boolean announce = false;
+    public static boolean announcestaff = false;
     @Override
     public void onEnable() {
 
         getCommand("laps").setExecutor(new ClearLaps());
         getCommand("leaderboard").setExecutor(new LeaderBoard());
+        getCommand("fleaderboard").setExecutor(new FLeaderboard());
         getCommand("rank").setExecutor(new RankCommand());
+        getCommand("racestart").setExecutor(new RaceCommand());
+        getCommand("blueflag").setExecutor(new BlueFlag());
         instance = this;
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         final Scoreboard[] board = {manager.getNewScoreboard()};

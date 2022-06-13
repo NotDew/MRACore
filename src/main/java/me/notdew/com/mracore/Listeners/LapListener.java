@@ -13,7 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LapListener implements Listener {
     public static HashMap<String, Long> cooldowns = new HashMap<String, Long>();
@@ -44,9 +45,23 @@ public class LapListener implements Listener {
                     }.runTaskTimer(MRACore.getInstance(),0, 1);
                     cooldowns.put(p.getName(), System.currentTimeMillis());
                     // Do Command Here
+
                     if (MRACore.laps.containsKey(p.getUniqueId())) {
+                        if (MRACore.race != null) {
+                            if (Math.floor(MRACore.laps.get(p.getUniqueId()))== MRACore.race.getLaps() && (MRACore.pit.get(p.getUniqueId()) == MRACore.race.getPit() )) {
+                                for (double i = .99; i > 0; i = i - .01) {
+                                    if (!MRACore.flaps.containsValue(Math.ceil(MRACore.laps.get(p.getUniqueId())) + i)) {
+                                        MRACore.flaps.put(p.getUniqueId(), Math.ceil(MRACore.laps.get(p.getUniqueId())) + i);
+                                        Bukkit.broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD + p.getName() + " finished at P" + MRACore.race.getSpot(p));
+                                        i = 0;
+                                    }
+                                }
+
+
+                            }
+                        }
                         p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
-                        for (double i = .9; i > 0; i = i - .1) {
+                        for (double i = .99; i > 0; i = i - .01) {
                             if (!MRACore.laps.containsValue(Math.ceil(MRACore.laps.get(p.getUniqueId())) + i)) {
                                 MRACore.laps.put(p.getUniqueId(), Math.ceil(MRACore.laps.get(p.getUniqueId())) + i);
                                 i = 0;
@@ -55,7 +70,7 @@ public class LapListener implements Listener {
                     }
                     if (!(MRACore.laps.containsKey(p.getUniqueId()))) {// used
 
-                        for (double i = 1.9; i > 0; i = i - .1) {
+                        for (double i = 1.99; i > 0; i = i - .01) {
 
                             if (!MRACore.laps.containsValue(i)) {
 
@@ -88,9 +103,23 @@ public class LapListener implements Listener {
                         }
                     }
                 }.runTaskTimer(MRACore.getInstance(),0, 1);
+
                 if (MRACore.laps.containsKey(p.getUniqueId())) {
+                    if (MRACore.race != null) {
+                        if (Math.floor(MRACore.laps.get(p.getUniqueId()))== MRACore.race.getLaps() && (MRACore.pit.get(p.getUniqueId()) == MRACore.race.getPit() )) {
+                            for (double i = .99; i > 0; i = i - .01) {
+                                if (!MRACore.flaps.containsValue(Math.ceil(MRACore.laps.get(p.getUniqueId())) + i)) {
+                                    MRACore.flaps.put(p.getUniqueId(), Math.ceil(MRACore.laps.get(p.getUniqueId())) + i);
+                                    Bukkit.broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD + p.getName() + " finished at P" + MRACore.race.getSpot(p));
+                                    i = 0;
+                                }
+                            }
+
+
+                        }
+                    }
                     //nmot used
-                    for (double i = .9; i > 1; i = i - .1) {
+                    for (double i = .99; i > 1; i = i - .01) {
                         if (!MRACore.laps.containsValue(Math.ceil(MRACore.laps.get(p.getUniqueId())) + i)) {
                             MRACore.laps.put(p.getUniqueId(), Math.ceil(MRACore.laps.get(p.getUniqueId())) + i);
                             i = 0;
@@ -99,7 +128,7 @@ public class LapListener implements Listener {
                     p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
 
                 } else { // used
-                    for (double i = 1.9; i > 0; i = i - .1) {
+                    for (double i = 1.99; i > 0; i = i - .01) {
                         if (!MRACore.laps.containsValue(i)) {
                             MRACore.laps.put(p.getUniqueId(), i);
                             i = 0;

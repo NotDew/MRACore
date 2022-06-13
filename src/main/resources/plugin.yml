@@ -6,7 +6,11 @@ api-version: 1.18
 
 commands:
   laps:
+  blueflag:
+  fleaderboard:
+    aliases: fl
   leaderboard:
     aliases: l
   rank:
     aliases: grant
+  racestart:

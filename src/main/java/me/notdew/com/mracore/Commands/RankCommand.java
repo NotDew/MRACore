@@ -1,9 +1,6 @@
 package me.notdew.com.mracore.Commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +18,7 @@ import java.util.HashMap;
 
 public class RankCommand implements CommandExecutor, Listener {
     
-    public static HashMap<Player, Player> rank = new HashMap<>();
+    public static HashMap<Player, OfflinePlayer> rank = new HashMap<>();
 
     public static Inventory inv;
     public static Inventory i;
@@ -34,7 +31,7 @@ public class RankCommand implements CommandExecutor, Listener {
             sender.sendMessage(ChatColor.RED + "Specify a player.");
             return false;
         }
-        rank.put(p, Bukkit.getPlayer(args[0]));
+        rank.put(p, Bukkit.getOfflinePlayer(args[0]));
 
 
         inv = Bukkit.createInventory(null, 27, ChatColor.GREEN + "" + ChatColor.BOLD + "MRA Ranks");
@@ -91,13 +88,13 @@ public class RankCommand implements CommandExecutor, Listener {
         if (e.getInventory().equals(i)) {
             if (e.getRawSlot() == 3) {
                 p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired AlfaRomeo");
-                confirmRank("lp user " + rank.get(p).getName() + " parent add alfaromeo");
+                confirmRank("lp user " + rank.get(p).getName() + " parent add alfa-romeo");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 4) {
                 p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired AlphaTauri");
-                confirmRank( "lp user " + rank.get(p).getName() + " parent add alphatauri");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add alpha-tauri");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
@@ -150,8 +147,14 @@ public class RankCommand implements CommandExecutor, Listener {
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
             if (e.getRawSlot() == 23) {
-                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Williams");
-                confirmRank( "lp user " + rank.get(p).getName() + " parent add williams");
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired AstonMartin");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add astonmartin");
+                e.getWhoClicked().closeInventory();
+                p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
+            }
+            if (e.getRawSlot() == 6) {
+                p.sendMessage(ChatColor.GREEN + rank.get(p).getName() + " Has Acquired Porsche");
+                confirmRank( "lp user " + rank.get(p).getName() + " parent add porsche");
                 e.getWhoClicked().closeInventory();
                 p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
             }
@@ -164,6 +167,7 @@ public class RankCommand implements CommandExecutor, Listener {
                 i.setItem(3, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlfaRomeo ", "§aGive " + ChatColor.RED + rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(4, createGuiItem(Material.BIRCH_BOAT, "§a§lAlphaTauri ", "§aGive " + ChatColor.RED + rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(5, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAlpine ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(6, createGuiItem(Material.DARK_OAK_BOAT, "§a§lPorsche ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(11, createGuiItem(Material.OAK_BOAT, "§a§lBMW ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(12, createGuiItem(Material.DARK_OAK_BOAT, "§a§lFerrari ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(13, createGuiItem(Material.JUNGLE_BOAT, "§a§lHaas ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
@@ -171,7 +175,7 @@ public class RankCommand implements CommandExecutor, Listener {
                 i.setItem(15, createGuiItem(Material.OAK_BOAT, "§a§lMcLaren ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(21, createGuiItem(Material.DARK_OAK_BOAT, "§a§lMercedes ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
                 i.setItem(22, createGuiItem(Material.BIRCH_BOAT, "§a§lRedBull ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
-                i.setItem(23, createGuiItem(Material.DARK_OAK_BOAT, "§a§lWilliams ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
+                i.setItem(23, createGuiItem(Material.DARK_OAK_BOAT, "§a§lAstonMartin ", "§aGive " + ChatColor.RED+ rank.get(p).getName() + " §aTeam Role!!", ""));
 
                 // 3,4,5,11,12,13,14,15,21,22,23
 
