@@ -18,7 +18,6 @@ public class BlueFlag implements CommandExecutor {
 
         if (getPlayer(args[0]) instanceof Player) {
             Bukkit.getPlayer(args[0]).sendTitle(ChatColor.BLUE + "BLUE FLAG!!", "LET THE PERSON BEHIND YOU PASS ");
-
             Bukkit.getPlayer(args[0]).playSound(Bukkit.getPlayer(args[0]).getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 15, 0);
         }
 

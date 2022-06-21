@@ -1,6 +1,7 @@
 package me.notdew.com.mracore;
 
 import me.notdew.com.mracore.Commands.*;
+import me.notdew.com.mracore.Listeners.InitiatePit;
 import me.notdew.com.mracore.Listeners.LapListener;
 import me.notdew.com.mracore.Listeners.PitListener;
 import me.notdew.com.mracore.Objects.RaceObject;
@@ -56,6 +57,7 @@ public final class MRACore extends JavaPlugin implements Listener {
         instance.getServer().getPluginManager().registerEvents(this, this);
         instance.getServer().getPluginManager().registerEvents(new PitListener(), this);
         instance.getServer().getPluginManager().registerEvents(new RankCommand(), this);
+        instance.getServer().getPluginManager().registerEvents(new InitiatePit(), this);
 
 
 
