@@ -21,14 +21,14 @@ public class LeaderBoard implements CommandExecutor {
         if (!(sender instanceof Player)) {
             int place = 1;
             for (UUID u : ScoreboardUpdate.sortedLaps) {
-                System.out.println(ChatColor.GREEN + "" + place + ": " + Bukkit.getOfflinePlayer(u).getName() + " : Laps: " + Math.floor(MRACore.laps.get(u)));
+                System.out.println(ChatColor.GREEN + "" + place + ": " + Bukkit.getOfflinePlayer(u).getName() + " : Laps: " + (int) Math.floor(MRACore.laps.get(u)));
                 place++;
             }
         }
 
         int place = 1;
         for (UUID u : ScoreboardUpdate.sortedLaps) {
-            sender.sendMessage(ChatColor.GREEN + "" + place + ": " + Bukkit.getOfflinePlayer(u).getName() + " : Laps: " + Math.floor(MRACore.laps.get(u)));
+            sender.sendMessage(ChatColor.GREEN + "" + place + ": " + Bukkit.getOfflinePlayer(u).getName() + " : Laps: " + (int) Math.floor(MRACore.laps.get(u)));
             place++;
         }
 

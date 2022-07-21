@@ -14,7 +14,7 @@ public class BlueFlag implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender.hasPermission("rank.give"))) return false;
+        if (!(sender.hasPermission("marshal.is"))) return false;
 
         if (getPlayer(args[0]) instanceof Player) {
             Bukkit.getPlayer(args[0]).sendTitle(ChatColor.BLUE + "BLUE FLAG!!", "LET THE PERSON BEHIND YOU PASS ");

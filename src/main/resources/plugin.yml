@@ -5,12 +5,15 @@ main: me.notdew.com.mracore.MRACore
 api-version: 1.18
 
 commands:
+  boat:
   laps:
   blueflag:
   fleaderboard:
     aliases: fl
   leaderboard:
     aliases: l
+  build:
+    aliases: buildmode
   rank:
     aliases: grant
   racestart:

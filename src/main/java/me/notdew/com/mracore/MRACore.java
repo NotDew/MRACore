@@ -1,6 +1,7 @@
 package me.notdew.com.mracore;
 
 import me.notdew.com.mracore.Commands.*;
+import me.notdew.com.mracore.Listeners.BuildProtect;
 import me.notdew.com.mracore.Listeners.InitiatePit;
 import me.notdew.com.mracore.Listeners.LapListener;
 import me.notdew.com.mracore.Listeners.PitListener;
@@ -30,6 +31,7 @@ public final class MRACore extends JavaPlugin implements Listener {
     public static ArrayList<Player> NoScoreboard = new ArrayList<Player>();
     public static HashMap<UUID, Double> laps = new HashMap<UUID, Double>();
     public static HashMap<UUID, Double> flaps = new HashMap<UUID, Double>();
+    public static ArrayList<Player> buildMode = new ArrayList<Player>();
 
     public static RaceObject race;
 
@@ -57,7 +59,12 @@ public final class MRACore extends JavaPlugin implements Listener {
         instance.getServer().getPluginManager().registerEvents(this, this);
         instance.getServer().getPluginManager().registerEvents(new PitListener(), this);
         instance.getServer().getPluginManager().registerEvents(new RankCommand(), this);
+        instance.getServer().getPluginManager().registerEvents(new BuildProtect(), this);
+
         instance.getServer().getPluginManager().registerEvents(new InitiatePit(), this);
+        this.getCommand("boat").setExecutor(new BoatCommand());
+        this.getCommand("build").setExecutor(new BuildCommand());
+        this.getServer().getPluginManager().registerEvents(new BoatCommand(), this);
 
 
 

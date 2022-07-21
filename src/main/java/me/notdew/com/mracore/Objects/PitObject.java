@@ -1,6 +1,7 @@
 package me.notdew.com.mracore.Objects;
 
 import me.notdew.com.mracore.Listeners.InitiatePit;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Boat;
@@ -22,21 +23,22 @@ public class PitObject {
     public PitObject(Location l, Player p) {
         this.p = p;
 
-        ArrayList<Entity> nearByEntities = (ArrayList)p.getNearbyEntities(5,2,5);
+        ArrayList<Entity> nearByEntities = (ArrayList)p.getNearbyEntities(5,3,5);
         ArrayList<Entity> boats = new ArrayList<Entity>();
         nearByEntities.add(p);
         for (Entity e : nearByEntities) {
             if (e.getType() == EntityType.BOAT) {
                 boats.add(e);
-
             }
         }
 
         if (boats.isEmpty()) {
+            InitiatePit.pits.remove(this);
             InitiatePit.pits.remove(l);
+            InitiatePit.pits.remove(p);
+            tires = 0;
             return;
         }
-
         Entity en = boats.get(0);
 
         for (Entity e : boats) {
@@ -46,8 +48,6 @@ public class PitObject {
         }
         boat = en;
         addCar();
-
-
     }
 
     public int tireBreak() {

@@ -1,10 +1,7 @@
 package me.notdew.com.mracore.Listeners;
 
 import me.notdew.com.mracore.Objects.PitObject;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -25,7 +22,7 @@ public class InitiatePit implements Listener {
         if (e.getClickedBlock().getType().equals(Material.STONE_BUTTON)) {
 
             //PIT END
-            if (pits.containsKey(e.getClickedBlock().getLocation())) {
+            if (pits.containsKey(e.getClickedBlock().getLocation().getBlock().getLocation())) {
                 PitObject pit = pits.get(e.getClickedBlock().getLocation());
 
                 if (pit.getTires() == 0) {
